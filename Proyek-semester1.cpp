@@ -2,8 +2,11 @@
 #include <iomanip>
 
 using namespace std;
+
+void hitungpembelian();
+
 int main(){
-	string barang[6] = {{"Sabun Mandi"},{"Minyak Goreng"},{"SIkat Gigi"},{"Pasta Gigi"},{"Mie Instan"},{"Tissue"}};
+	string barang[6] = {{"Sabun Mandi"},{"Minyak Goreng"},{"Sikat Gigi"},{"Pasta Gigi"},{"Mie Instan"},{"Tissue"}};
 	string username;
 	int stok[6] = {{100},{90},{110},{80},{85},{100}};
 	int harga[6] = {{5000},{12000},{4000},{7000},{3000},{10000}};
@@ -67,8 +70,8 @@ int main(){
 		cout<<setfill('-')<<setw(50)<<"-"<<endl;
 		}
 	else if (menu == 3){
-		cout<<"Hitung Pembelian"<<endl;
-		
+		cout<<"\nHitung Pembelian"<<endl;
+		hitungpembelian();
 		
 		
 		}
@@ -76,3 +79,35 @@ int main(){
 	cout<<"Input Tidak Sesuai"<<endl;	
 		}	
 	}
+	
+void hitungpembelian(){
+	int jml_beli, jumlah;
+	string nama_barang;
+	char tambah;
+	
+	jml_beli = 1;
+	for (int i=0; i<jml_beli;i++){
+		cout<<endl;
+		cout<<"Masukkan Barang Ke-"<<i+1<<endl;
+		
+		cout<<"Nama Barang\t: ";
+		cin.ignore();
+		getline(cin, nama_barang);
+		
+		cout<<"Jumlah\t\t: ";
+		cin>>jumlah;
+		
+		cout<<"Harga Satuan\t: ";
+		//harga sesuai nama barang yg diinput?
+		
+		cout<<"\nSub Total\t: \n";
+		//sub_total = jumlah*harga
+		
+		cout<<"Tambah Barang (Y/N)? "; cin>>tambah;
+		if (tambah == 'Y' || tambah == 'y') jml_beli++;
+		else if (tambah == 'N' || tambah == 'n'){
+			cout<<"\nTotal\t: ";
+			//cout<<total;
+		}
+	}
+}
