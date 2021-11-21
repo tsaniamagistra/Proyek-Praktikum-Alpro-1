@@ -6,10 +6,10 @@ using namespace std;
 void hitungpembelian();
 
 int main(){
-	string barang[6] = {{"Sabun Mandi"},{"Minyak Goreng"},{"Sikat Gigi"},{"Pasta Gigi"},{"Mie Instan"},{"Tissue"}};
-	string username;
-	int stok[6] = {{100},{90},{110},{80},{85},{100}};
-	int harga[6] = {{5000},{12000},{4000},{7000},{3000},{10000}};
+	string barang[6] = {"Sabun Mandi","Minyak Goreng","Sikat Gigi","Pasta Gigi","Mie Instan","Tissue"};
+	string username,kembali_menu,hitung_kembali;
+	int stok[6] = {100,90,110,80,85,100};
+	int harga[6] = {5000,12000,4000,7000,3000,10000};
 	int menu,password;
 	
 	cout<<"PROGRAM KASIR MINIMARKET"<<endl;
@@ -20,7 +20,9 @@ int main(){
 	cout<<"Password\t= ";
 	cin>>password;
 	
-	if ((username == "Seva" && password == 123210061)||(username == "Tsania" && password == 123210090)){
+	if ((username == "Seva" && password == 123210061)||(username == "Tsania" && password == 123210090))
+	do{
+	{
 		cout<<setfill('=')<<setw(50)<<"="<<endl
 			<<"\nSelamat Datang "<<username<<" ^^"<<endl
 			<<"\nSilakan Pilih Menu"<<endl
@@ -29,9 +31,6 @@ int main(){
 			<<"3. Hitung Pembelian"<<endl
 			<<"Pilih Menu\t= ";
 		cin>>menu;
-		}
-	else{
-		cout<<"\nUsername/Password Salah"<<endl;
 		}
 	if (menu == 1){
 		cout<<"\nDaftar Barang"<<endl;
@@ -59,18 +58,27 @@ int main(){
 		cout<<barang[5]<<"\t\t\t"<<"| "<<harga[5]<<"\t\t\t|"<<endl;
 		cout<<setfill('-')<<setw(50)<<"-"<<endl;
 		}
-	else if (menu == 3){
+	else if (menu == 3)do{
 		cout<<"\nHitung Pembelian"<<endl;
 		hitungpembelian();
-		}
+		cout<<"\nHitung Kembali? (Y/N) ";
+		cin>>hitung_kembali;
+		}while (hitung_kembali == "Y" || hitung_kembali == "y");
+		
 	else{
 	cout<<"Input Tidak Sesuai"<<endl;	
-		}	
+		}
+	cout<<"\nKembali ke Menu? (Y/N) ";
+	cin>>kembali_menu;		
+	}while (kembali_menu == "y" || kembali_menu == "Y");
+	else{
+		cout<<"\nUsername/Password Salah"<<endl;
+		}
 	}
 
 void hitungpembelian(){
-	string barang[6] = {{"Sabun Mandi"},{"Minyak Goreng"},{"Sikat Gigi"},{"Pasta Gigi"},{"Mie Instan"},{"Tissue"}};
-	int harga[6] = {{5000},{12000},{4000},{7000},{3000},{10000}};
+	string barang[6] = {"Sabun Mandi","Minyak Goreng","Sikat Gigi","Pasta Gigi","Mie Instan","Tissue"};
+	int harga[6] = {5000,12000,4000,7000,3000,10000};
 	int jml_beli, jumlah, hargasatuan, total;
 	string nama_barang;
 	char tambah;
