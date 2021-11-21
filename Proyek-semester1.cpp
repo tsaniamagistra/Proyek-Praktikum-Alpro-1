@@ -20,24 +20,14 @@ int main(){
 	cout<<"Password\t= ";
 	cin>>password;
 	
-	if (username == "Seva" && password == 123210061){
-		cout<<setfill('=')<<setw(50)<<"="<<endl;
-		cout<<"\nSelamat Datang Seva ^^"<<endl;
-		cout<<"\nSilakan Pilih Menu"<<endl;
-		cout<<"1. Daftar Barang"<<endl;
-		cout<<"2. Daftar Harga"<<endl;
-		cout<<"3. Hitung Pembelian"<<endl;
-		cout<<"Pilih Menu\t= ";
-		cin>>menu;
-		}
-	else if (username == "Tsania" && password == 123210090){
-		cout<<setfill('=')<<setw(50)<<"="<<endl;
-		cout<<"\nSelamat Datang Tsania ^^"<<endl;
-		cout<<"\nSilakan Pilih Menu"<<endl;
-		cout<<"1. Daftar Barang"<<endl;
-		cout<<"2. Daftar Harga"<<endl;
-		cout<<"3. Hitung Pembelian"<<endl;
-		cout<<"Pilih Menu\t= ";
+	if ((username == "Seva" && password == 123210061)||(username == "Tsania" && password == 123210090)){
+		cout<<setfill('=')<<setw(50)<<"="<<endl
+			<<"\nSelamat Datang "<<username<<" ^^"<<endl
+			<<"\nSilakan Pilih Menu"<<endl
+			<<"1. Daftar Barang"<<endl
+			<<"2. Daftar Harga"<<endl
+			<<"3. Hitung Pembelian"<<endl
+			<<"Pilih Menu\t= ";
 		cin>>menu;
 		}
 	else{
@@ -79,17 +69,17 @@ int main(){
 	cout<<"Input Tidak Sesuai"<<endl;	
 		}	
 	}
-	
+
 void hitungpembelian(){
 	int jml_beli, jumlah;
 	string nama_barang;
 	char tambah;
 	
 	jml_beli = 1;
-	for (int i=0; i<jml_beli;i++){
+	for (int i=0; i<jml_beli; i++){
 		cout<<endl;
 		cout<<"Masukkan Barang Ke-"<<i+1<<endl;
-		
+
 		cout<<"Nama Barang\t: ";
 		cin.ignore();
 		getline(cin, nama_barang);
