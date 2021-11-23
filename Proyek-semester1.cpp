@@ -3,7 +3,7 @@
 
 using namespace std;
 
-void hitungpembelian();
+void hitungpembelian(string barang[6], int stok[6], int harga[6]);
 
 int main(){
 	string barang[6] = {"Sabun Mandi","Minyak Goreng","Sikat Gigi","Pasta Gigi","Mie Instan","Tissue"};
@@ -60,7 +60,7 @@ int main(){
 		}
 	else if (menu == 3)do{
 		cout<<"\nHitung Pembelian"<<endl;
-		hitungpembelian();
+		hitungpembelian(barang,stok,harga);
 		cout<<"\nHitung Kembali? (Y/N) ";
 		cin>>hitung_kembali;
 		}while (hitung_kembali == "Y" || hitung_kembali == "y");
@@ -76,9 +76,7 @@ int main(){
 		}
 	}
 
-void hitungpembelian(){
-	string barang[6] = {"Sabun Mandi","Minyak Goreng","Sikat Gigi","Pasta Gigi","Mie Instan","Tissue"};
-	int harga[6] = {5000,12000,4000,7000,3000,10000};
+void hitungpembelian(string barang[6], int stok[6], int harga[6]){
 	int jml_beli, jumlah, hargasatuan, total;
 	string nama_barang;
 	char tambah;
@@ -93,33 +91,48 @@ void hitungpembelian(){
 		cin.ignore();
 		getline(cin, nama_barang);
 		
-		cout<<"Jumlah\t\t: ";
-		cin>>jumlah;
-		
 		cout<<"Harga Satuan\t: ";
 		if (nama_barang == barang[0]){
 			hargasatuan = harga[0];
 			cout<<hargasatuan;
+			cout<<"\nJumlah\t\t: ";
+			cin>>jumlah;
+			stok[0] = stok[0] - jumlah;
 		}
 		else if (nama_barang == barang[1]){
 			hargasatuan = harga[1];
 			cout<<hargasatuan;
+			cout<<"\nJumlah\t\t: ";
+			cin>>jumlah;
+			stok[1] = stok[1] - jumlah;
 		}
 		else if (nama_barang == barang[2]){
 			hargasatuan = harga[2];
 			cout<<hargasatuan;
+			cout<<"\nJumlah\t\t: ";
+			cin>>jumlah;
+			stok[2] = stok[2] - jumlah;
 		}
 		else if (nama_barang == barang[3]){
 			hargasatuan = harga[3];
 			cout<<hargasatuan;
+			cout<<"\nJumlah\t\t: ";
+			cin>>jumlah;
+			stok[3] = stok[3] - jumlah;
 		}
 		else if (nama_barang == barang[4]){
 			hargasatuan = harga[4];
 			cout<<hargasatuan;
+			cout<<"\nJumlah\t\t: ";
+			cin>>jumlah;
+			stok[4] = stok[4] - jumlah;
 		}
 		else if (nama_barang == barang[5]){
 			hargasatuan = harga[5];
 			cout<<hargasatuan;
+			cout<<"\nJumlah\t\t: ";
+			cin>>jumlah;
+			stok[5] = stok[5] - jumlah;
 		}
 		else {
 			hargasatuan = 0;
