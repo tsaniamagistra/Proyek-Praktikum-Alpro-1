@@ -7,74 +7,85 @@ void hitungpembelian(string barang[6], int stok[6], int harga[6]);
 
 int main(){
 	string barang[6] = {"Sabun Mandi","Minyak Goreng","Sikat Gigi","Pasta Gigi","Mie Instan","Tissue"};
-	string username,kembali_menu,hitung_kembali;
+	string username,password;
+	char kembali_menu,hitung_kembali,ulang_login;
 	int stok[6] = {100,90,110,80,85,100};
 	int harga[6] = {5000,12000,4000,7000,3000,10000};
-	int menu,password;
+	int menu;
+	int databarang = sizeof(barang)/sizeof(barang[0]);
 	
+	do{
+	system("CLS");
 	cout<<"PROGRAM KASIR MINIMARKET"<<endl;
 	cout<<setfill('=')<<setw(50)<<"="<<endl;
-	cout<<"SIlakan Masukkan Username & Password"<<endl;
+	cout<<"Silakan Masukkan Username & Password"<<endl;
 	cout<<"Username\t= ";
 	cin>>username;
 	cout<<"Password\t= ";
 	cin>>password;
 	
-	if ((username == "Seva" && password == 123210061)||(username == "Tsania" && password == 123210090))
+	//username dan password benar
+	if ((username == "Seva" && password == "123210061")||(username == "Tsania" && password == "123210090"))
 	do{
-	{
-		cout<<setfill('=')<<setw(50)<<"="<<endl
-			<<"\nSelamat Datang "<<username<<" ^^"<<endl
-			<<"\nSilakan Pilih Menu"<<endl
-			<<"1. Daftar Barang"<<endl
-			<<"2. Daftar Harga"<<endl
-			<<"3. Hitung Pembelian"<<endl
-			<<"Pilih Menu\t= ";
-		cin>>menu;
-		}
+	system("CLS");
+	cout<<"PROGRAM KASIR MINIMARKET"<<endl;
+	cout<<setfill('=')<<setw(50)<<"="<<endl
+		<<"\nSelamat Datang "<<username<<" ^^"<<endl
+		<<"\nSilakan Pilih Menu"<<endl
+		<<"1. Daftar Barang"<<endl
+		<<"2. Daftar Harga"<<endl
+		<<"3. Hitung Pembelian"<<endl
+		<<"Pilih Menu\t= ";
+	cin>>menu;
 	if (menu == 1){
 		cout<<"\nDaftar Barang"<<endl;
 		cout<<setfill('-')<<setw(50)<<"-"<<endl;
-		cout<<"Barang\t\t\t"<<"| "<<"Stok Barang\t\t"<<"|"<<endl;
+		cout<<setiosflags(ios::left)<<setfill(' ')<<setw(25)<<"Barang"<<"| "
+			<<setiosflags(ios::left)<<setfill(' ')<<setw(22)<<"Stok Barang"<<"|"<<endl;
 		cout<<setfill('-')<<setw(50)<<"-"<<endl;
-		cout<<barang[0]<<"\t\t"<<"| "<<stok[0]<<"\t\t\t|"<<endl;
-		cout<<barang[1]<<"\t\t"<<"| "<<stok[1]<<"\t\t\t|"<<endl;
-		cout<<barang[2]<<"\t\t"<<"| "<<stok[2]<<"\t\t\t|"<<endl;
-		cout<<barang[3]<<"\t\t"<<"| "<<stok[3]<<"\t\t\t|"<<endl;
-		cout<<barang[4]<<"\t\t"<<"| "<<stok[4]<<"\t\t\t|"<<endl;
-		cout<<barang[5]<<"\t\t\t"<<"| "<<stok[5]<<"\t\t\t|"<<endl;
-		cout<<setfill('-')<<setw(50)<<"-"<<endl;
+		for(int k = 0; k < databarang; k++){
+			cout<<setiosflags(ios::left)<<setfill(' ')<<setw(25)<<barang[k]<<"| "
+				<<setiosflags(ios::left)<<setw(22)<<stok[k]<<"|"<<endl;
 		}
+		cout<<setfill('-')<<setw(50)<<"-"<<endl;
+	}
 	else if (menu == 2){
 		cout<<"\nDaftar Harga"<<endl;
 		cout<<setfill('-')<<setw(50)<<"-"<<endl;
-		cout<<"Barang\t\t\t"<<"| "<<"Harga Barang\t\t"<<"|"<<endl;
+		cout<<setiosflags(ios::left)<<setfill(' ')<<setw(25)<<"Barang"<<"| "
+			<<setiosflags(ios::left)<<setfill(' ')<<setw(22)<<"Harga Barang"<<"|"<<endl;
 		cout<<setfill('-')<<setw(50)<<"-"<<endl;
-		cout<<barang[0]<<"\t\t"<<"| "<<harga[0]<<"\t\t\t|"<<endl;
-		cout<<barang[1]<<"\t\t"<<"| "<<harga[1]<<"\t\t\t|"<<endl;
-		cout<<barang[2]<<"\t\t"<<"| "<<harga[2]<<"\t\t\t|"<<endl;
-		cout<<barang[3]<<"\t\t"<<"| "<<harga[3]<<"\t\t\t|"<<endl;
-		cout<<barang[4]<<"\t\t"<<"| "<<harga[4]<<"\t\t\t|"<<endl;
-		cout<<barang[5]<<"\t\t\t"<<"| "<<harga[5]<<"\t\t\t|"<<endl;
-		cout<<setfill('-')<<setw(50)<<"-"<<endl;
+		for(int k = 0; k < databarang; k++){
+			cout<<setiosflags(ios::left)<<setfill(' ')<<setw(25)<<barang[k]<<"| "
+				<<setiosflags(ios::left)<<setw(22)<<harga[k]<<"|"<<endl;
 		}
-	else if (menu == 3)do{
+		cout<<setfill('-')<<setw(50)<<"-"<<endl;
+	}
+	else if (menu == 3){do{
 		cout<<"\nHitung Pembelian"<<endl;
 		hitungpembelian(barang,stok,harga);
-		cout<<"\nHitung Kembali? (Y/N) ";
+		cout<<"\nHitung Kembali (Y/N)? ";
 		cin>>hitung_kembali;
-		}while (hitung_kembali == "Y" || hitung_kembali == "y");
-		
+		}while (hitung_kembali == 'Y' || hitung_kembali == 'y');
+	}
 	else{
-	cout<<"Input Tidak Sesuai"<<endl;	
-		}
-	cout<<"\nKembali ke Menu? (Y/N) ";
-	cin>>kembali_menu;		
-	}while (kembali_menu == "y" || kembali_menu == "Y");
+		cout<<endl<<"Input Tidak Sesuai";	
+	}
+	cout<<"\nKembali ke Menu (Y/N)? ";
+	cin>>kembali_menu;
+	if (kembali_menu == 'y' || kembali_menu == 'Y') system("CLS");
+	}while (kembali_menu == 'y' || kembali_menu == 'Y');
+	
+	//username atau password salah
 	else{
 		cout<<"\nUsername/Password Salah"<<endl;
+		cout<<"Input ulang username & password (Y/N)? ";
+		cin>>ulang_login;
 		}
-	}
+	}while (ulang_login == 'y' || ulang_login == 'Y');
+	
+	return 0;
+}
 
 void hitungpembelian(string barang[6], int stok[6], int harga[6]){
 	int jml_beli, jumlah, hargasatuan, total;
