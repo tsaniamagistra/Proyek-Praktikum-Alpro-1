@@ -3,7 +3,7 @@
 
 using namespace std;
 
-void hitungpembelian(string barang[6], int stok[6], int harga[6]);
+void hitungpembelian(string barang[6], int stok[6], int harga[6], int databarang);
 
 int main(){
 	string barang[6] = {"Sabun Mandi","Minyak Goreng","Sikat Gigi","Pasta Gigi","Mie Instan","Tissue"};
@@ -63,7 +63,7 @@ int main(){
 	}
 	else if (menu == 3){do{
 		cout<<"\nHitung Pembelian"<<endl;
-		hitungpembelian(barang,stok,harga);
+		hitungpembelian(barang,stok,harga,databarang);
 		cout<<"\nHitung Kembali (Y/N)? ";
 		cin>>hitung_kembali;
 		}while (hitung_kembali == 'Y' || hitung_kembali == 'y');
@@ -87,73 +87,35 @@ int main(){
 	return 0;
 }
 
-void hitungpembelian(string barang[6], int stok[6], int harga[6]){
-	int jml_beli, jumlah, hargasatuan, total;
+void hitungpembelian(string barang[6], int stok[6], int harga[6], int databarang){
+	int jml_beli = 1, jumlah, hargasatuan, total = 0;
+	int subtotal[50] = {0};
 	string nama_barang;
-	char tambah;
+	char tambah, notfound;
 	
-	jml_beli = 1;
-	total = 0;
-	for (int i=0; i<jml_beli; i++){
-		cout<<endl;
-		cout<<"Masukkan Barang Ke-"<<i+1<<endl;
-
+	for (int i=0; i<jml_beli; i++){		
+		cout<<"\nMasukkan Barang Ke-"<<i+1<<endl;
 		cout<<"Nama Barang\t: ";
 		cin.ignore();
 		getline(cin, nama_barang);
 		
-		cout<<"Harga Satuan\t: ";
-		if (nama_barang == barang[0]){
-			hargasatuan = harga[0];
-			cout<<hargasatuan;
-			cout<<"\nJumlah\t\t: ";
-			cin>>jumlah;
-			stok[0] = stok[0] - jumlah;
+		for (int j=0; j<databarang; j++){
+			if (nama_barang == barang[j]){
+				hargasatuan = harga[j];
+				cout<<"Harga Satuan\t: "<<hargasatuan;
+				cout<<"\nJumlah\t\t: ";
+				cin>>jumlah;
+				stok[j] = stok[j] - jumlah;
+				subtotal[i] = (jumlah*hargasatuan);
+				total += subtotal[i];
+				cout<<"Sub Total\t: "<<subtotal[i];
+				j=databarang; notfound = 'x';
+			}
+			else notfound = 'o';
 		}
-		else if (nama_barang == barang[1]){
-			hargasatuan = harga[1];
-			cout<<hargasatuan;
-			cout<<"\nJumlah\t\t: ";
-			cin>>jumlah;
-			stok[1] = stok[1] - jumlah;
+		if (notfound == 'o'){
+			cout<<"Harga Barang Tidak Ditemukan\n";
 		}
-		else if (nama_barang == barang[2]){
-			hargasatuan = harga[2];
-			cout<<hargasatuan;
-			cout<<"\nJumlah\t\t: ";
-			cin>>jumlah;
-			stok[2] = stok[2] - jumlah;
-		}
-		else if (nama_barang == barang[3]){
-			hargasatuan = harga[3];
-			cout<<hargasatuan;
-			cout<<"\nJumlah\t\t: ";
-			cin>>jumlah;
-			stok[3] = stok[3] - jumlah;
-		}
-		else if (nama_barang == barang[4]){
-			hargasatuan = harga[4];
-			cout<<hargasatuan;
-			cout<<"\nJumlah\t\t: ";
-			cin>>jumlah;
-			stok[4] = stok[4] - jumlah;
-		}
-		else if (nama_barang == barang[5]){
-			hargasatuan = harga[5];
-			cout<<hargasatuan;
-			cout<<"\nJumlah\t\t: ";
-			cin>>jumlah;
-			stok[5] = stok[5] - jumlah;
-		}
-		else {
-			hargasatuan = 0;
-			cout<<"Harga Barang Tidak Ditemukan";
-		}
-		
-		int subtotal[50] = {0};
-		subtotal[i] = (jumlah*hargasatuan);
-		total += subtotal[i];
-		cout<<"\nSub Total\t: "<<subtotal[i];
 		
 		cout<<"\nTambah Barang (Y/N)? "; cin>>tambah;
 		if (tambah == 'Y' || tambah == 'y') jml_beli++;
