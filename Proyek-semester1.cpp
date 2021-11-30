@@ -46,8 +46,9 @@ int main(){
 			<<setiosflags(ios::left)<<setfill(' ')<<setw(22)<<"Stok Barang"<<"|"<<endl;
 		cout<<setfill('-')<<setw(52)<<"-"<<endl;
 		for(int k = 0; k < databarang; k++){
-			cout<<"| "<<setiosflags(ios::left)<<setfill(' ')<<setw(25)<<barang[k]<<"| "
-				<<setiosflags(ios::left)<<setw(22)<<stok[k]<<"|"<<endl;
+			cout<<resetiosflags(ios::adjustfield);
+			cout<<"| "<<setiosflags(ios::left)<<setfill(' ')<<setw(25)<<barang[k]<<"|"
+				<<setiosflags(ios::right)<<setw(22)<<stok[k]<<" |"<<endl;
 		}
 		cout<<setfill('-')<<setw(52)<<"-"<<endl;
 		cout<<"Update Daftar Barang (Y/N)? "; cin>>updatedaftar;
@@ -61,8 +62,9 @@ int main(){
 			<<setiosflags(ios::left)<<setfill(' ')<<setw(22)<<"Harga Barang"<<"|"<<endl;
 		cout<<setfill('-')<<setw(52)<<"-"<<endl;
 		for(int k = 0; k < databarang; k++){
-			cout<<"| "<<setiosflags(ios::left)<<setfill(' ')<<setw(25)<<barang[k]<<"| "
-				<<setiosflags(ios::left)<<setw(22)<<harga[k]<<"|"<<endl;
+			cout<<resetiosflags(ios::adjustfield);
+			cout<<"| "<<setiosflags(ios::left)<<setfill(' ')<<setw(25)<<barang[k]<<"|"
+				<<setiosflags(ios::right)<<setw(22)<<harga[k]<<" |"<<endl;
 		}
 		cout<<setfill('-')<<setw(52)<<"-"<<endl;
 		cout<<"Update Daftar Harga (Y/N)? "; cin>>updatedaftar;
@@ -155,7 +157,7 @@ void tabelpembelian(string nama_barang[50], int hargasatuan[50], int jumlah[50],
 			<<setiosflags(ios::right)<<setfill(' ')<<setw(11)<<subtotal[p]<<" |"<<endl;
 	}
 	cout<<setfill('-')<<setw(60)<<"-"<<endl
-		<<setiosflags(ios::right)<<setfill(' ')<<setw(45)<<"TOTAL"<<" |"
+		<<"|"<<setiosflags(ios::right)<<setfill(' ')<<setw(44)<<"TOTAL"<<" |"
 		<<setfill(' ')<<setw(11)<<total<<" |"<<endl
 		<<setfill('-')<<setw(60)<<"-"<<endl;
 }
