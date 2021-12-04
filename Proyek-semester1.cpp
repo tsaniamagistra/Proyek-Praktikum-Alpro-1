@@ -4,7 +4,8 @@
 using namespace std;
 
 void hitungpembelian(string barang[6], int stok[6], int harga[6], int databarang);
-void update();
+void updatebarang(string barang[6], int stok[6]);
+void updateharga(string barang[6], int harga[6]);
 void tabelpembelian(string nama_barang[50], int hargasatuan[50], int jumlah[50], int subtotal[50], int total, int jml_beli);
 
 int main(){
@@ -52,7 +53,7 @@ int main(){
 		}
 		cout<<setfill('-')<<setw(52)<<"-"<<endl;
 		cout<<"Update Daftar Barang (Y/N)? "; cin>>updatedaftar;
-		if (updatedaftar == 'y' || updatedaftar == 'Y') update();
+		if (updatedaftar == 'y' || updatedaftar == 'Y') updatebarang(barang,stok);
 	}
 	else if (menu == 2){
 		cout<<"\nDaftar Harga"<<endl;
@@ -68,7 +69,7 @@ int main(){
 		}
 		cout<<setfill('-')<<setw(52)<<"-"<<endl;
 		cout<<"Update Daftar Harga (Y/N)? "; cin>>updatedaftar;
-		if (updatedaftar == 'y' || updatedaftar == 'Y') update();
+		if (updatedaftar == 'y' || updatedaftar == 'Y') updateharga(barang,harga);
 	}
 	else if (menu == 3){do{
 		cout<<"\nHitung Pembelian"<<endl;
@@ -136,9 +137,46 @@ void hitungpembelian(string barang[6], int stok[6], int harga[6], int databarang
 	}
 }
 
-void update(){
-	cout<<"\n...\n";
+void updatebarang(string barang[6], int stok[6]){
+	int jumlah_stok = 1,stok_baru,stok_barang;
+	string perbarui,nama_barang;
+	
+	for(int i = 0;i<jumlah_stok;i++){
+	cout<<"Masukkan Nama Barang\t: ";
+	cin.ignore();
+	getline(cin,nama_barang);
+	if (nama_barang == barang[i]){
+	stok_barang = stok[i];
+	cout<<"\n"<<nama_barang<<"\nStok Lama\t\t\t= "<<stok_barang<<endl;
+	cout<<"Masukkan Jumlah Stok Baru\t= ";
+	cin>>stok_baru;
+	stok[i] = stok_baru;
+		}
+	cout<<"Perbarui Stok Barang Lain? (y/n) ";
+	cin>>perbarui;	
+	if (perbarui == "Y" || perbarui == "y")jumlah_stok++;	
+		}
 }
+void updateharga(string barang[6], int harga[6]){
+	int jumlah_harga = 1,harga_baru,harga_barang;
+	string perbarui,nama_barang;
+	
+	for(int i = 0;i<jumlah_harga;i++){
+	cout<<"Masukkan Nama Barang\t: ";
+	cin.ignore();
+	getline(cin,nama_barang);
+	if (nama_barang == barang[i]){
+	harga_barang = harga[i];
+	cout<<"\n"<<nama_barang<<"\nHarga Lama\t\t\t= "<<harga_barang<<endl;
+	cout<<"Masukkan Harga Baru\t\t= ";
+	cin>>harga_baru;
+	harga[i] = harga_baru;
+		}
+	cout<<"Perbarui Harga Barang Lain? (y/n) ";
+	cin>>perbarui;	
+	if (perbarui == "Y" || perbarui == "y")jumlah_harga++;	
+		}
+	}
 
 void tabelpembelian(string nama_barang[50], int hargasatuan[50], int jumlah[50], int subtotal[50], int total, int jml_beli){
 	cout<<"\n\n";
