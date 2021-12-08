@@ -44,12 +44,14 @@ int main(){
 	cin>>menu;
 	if (menu == 1){
 		system("CLS");
+		cout<<"1. ";
 		daftarbarang(barang,stok,databarang);
 		cout<<"Update Daftar Barang (Y/N)? "; cin>>updatedaftar;
 		if (updatedaftar == 'y' || updatedaftar == 'Y') updatebarang(barang,stok,databarang);
 	}
 	else if (menu == 2){
 		system("CLS");
+		cout<<"2. ";
 		daftarharga(barang,harga,databarang);
 		cout<<"Update Daftar Harga (Y/N)? "; cin>>updatedaftar;
 		if (updatedaftar == 'y' || updatedaftar == 'Y') updateharga(barang,harga,databarang);
@@ -162,7 +164,10 @@ void updatebarang(string barang[6], int stok[6], int databarang){
 		else if (perbarui == "N" || perbarui == "n"){
 			cout<<"Tampilkan daftar barang (Y/N)? ";
 			cin>>lihatbarang;
-			if (lihatbarang == "Y" || lihatbarang == "y") daftarbarang(barang,stok,databarang);
+			if (lihatbarang == "Y" || lihatbarang == "y"){
+				cout<<endl;
+				daftarbarang(barang,stok,databarang);
+			}
 		}
 	}
 }
@@ -191,7 +196,10 @@ void updateharga(string barang[6], int harga[6], int databarang){
 		else if (perbarui == "N" || perbarui == "n"){
 			cout<<"Tampilkan daftar barang (Y/N)? ";
 			cin>>lihatharga;
-			if (lihatharga == "Y" || lihatharga == "y") daftarharga(barang,harga,databarang);
+			if (lihatharga == "Y" || lihatharga == "y"){
+				cout<<endl;
+				daftarharga(barang,harga,databarang);
+			}
 		}
 	}
 }
@@ -219,7 +227,7 @@ void tabelpembelian(string nama_barang[50], int hargasatuan[50], int jumlah[50],
 }
 
 void daftarbarang(string barang[], int stok[], int databarang){
-	cout<<"1. Daftar Barang"<<endl;
+	cout<<"Daftar Barang"<<endl;
 	cout<<resetiosflags(ios::adjustfield);
 	cout<<setfill('-')<<setw(56)<<"-"<<endl;
 	cout<<"|"<<setiosflags(ios::left)<<setfill(' ')<<setw(3)<<"No"
@@ -236,7 +244,7 @@ void daftarbarang(string barang[], int stok[], int databarang){
 }
 
 void daftarharga(string barang[], int harga[], int databarang){
-	cout<<"2. Daftar Harga"<<endl;
+	cout<<"Daftar Harga"<<endl;
 	cout<<resetiosflags(ios::adjustfield);
 	cout<<setfill('-')<<setw(56)<<"-"<<endl;
 	cout<<"|"<<setiosflags(ios::left)<<setfill(' ')<<setw(3)<<"No"
