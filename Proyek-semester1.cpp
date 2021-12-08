@@ -135,6 +135,7 @@ void updatebarang(string barang[6], int stok[6], int databarang){
 				cout<<"STOK BARANG BERHASIL DIPERBARUI.\n";
 			}
 		}
+		if (pilih > databarang) cout<<"Barang Tidak Ditemukan\n";
 		cout<<"\nPerbarui Stok Barang Lain (Y/N)? ";
 		cin>>perbarui;
 		if (perbarui == "Y" || perbarui == "y")jumlah_stok++;
@@ -163,6 +164,7 @@ void updateharga(string barang[6], int harga[6], int databarang){
 				cout<<"HARGA BARANG BERHASIL DIPERBARUI.\n";
 			}
 		}
+		if (pilih > databarang) cout<<"Barang Tidak Ditemukan\n";
 		cout<<"\nPerbarui Harga Barang Lain (Y/N)? ";
 		cin>>perbarui;
 		if (perbarui == "Y" || perbarui == "y")jumlah_harga++;
