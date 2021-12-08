@@ -39,25 +39,34 @@ int main(){
 		<<"1. Daftar Barang"<<endl
 		<<"2. Daftar Harga"<<endl
 		<<"3. Hitung Pembelian"<<endl
-		<<"Pilih Menu\t= ";
+		<<"4. Logout"<<endl
+		<<"\nPilih Menu\t= ";
 	cin>>menu;
 	if (menu == 1){
+		system("CLS");
 		daftarbarang(barang,stok,databarang);
 		cout<<"Update Daftar Barang (Y/N)? "; cin>>updatedaftar;
 		if (updatedaftar == 'y' || updatedaftar == 'Y') updatebarang(barang,stok,databarang);
 	}
 	else if (menu == 2){
+		system("CLS");
 		daftarharga(barang,harga,databarang);
 		cout<<"Update Daftar Harga (Y/N)? "; cin>>updatedaftar;
 		if (updatedaftar == 'y' || updatedaftar == 'Y') updateharga(barang,harga,databarang);
 	}
 	else if (menu == 3){do{
-		cout<<"\nHitung Pembelian"<<endl;
+		system("CLS");
+		cout<<"3. Hitung Pembelian"<<endl;
 		hitungpembelian(barang,stok,harga,databarang);
 		cout<<"\nHitung Kembali (Y/N)? ";
 		cin>>hitung_kembali;
 		}while (hitung_kembali == 'Y' || hitung_kembali == 'y');
 	}
+	else if (menu == 4){
+		cout<<"\nTerima Kasih, Semoga Anda Bahagia."<<endl
+		<<"\nProgram Selesai"<<endl;
+		return 0;
+		}
 	else{
 		cout<<endl<<"Input Tidak Sesuai";	
 	}
@@ -83,6 +92,19 @@ void hitungpembelian(string barang[6], int stok[6], int harga[6], int databarang
 	string nama_barang[50];
 	char tambah, notfound;
 	
+	cout<<"\nDaftar Barang"<<endl;
+	cout<<resetiosflags(ios::adjustfield);
+	cout<<setfill('-')<<setw(32)<<"-"<<endl;
+	cout<<"|"<<setiosflags(ios::left)<<setfill(' ')<<setw(3)<<"No"
+		<<"| "<<setiosflags(ios::left)<<setfill(' ')<<setw(25)<<"Barang"<<"| "<<endl;
+	cout<<setfill('-')<<setw(32)<<"-"<<endl;
+	for(int k = 0; k < databarang; k++){
+		cout<<resetiosflags(ios::adjustfield);
+		cout<<"|"<<k+1<<setiosflags(ios::left)<<setfill(' ')<<setw(2)<<"."
+			<<"| "<<setiosflags(ios::left)<<setfill(' ')<<setw(25)<<barang[k]<<"|"<<endl;
+	}
+	cout<<setfill('-')<<setw(32)<<"-"<<endl;
+	
 	for (int i=0; i<jml_beli; i++){		
 		cout<<"\nMasukkan Barang Ke-"<<i+1<<endl;
 		cout<<"Nama Barang\t: ";
@@ -107,11 +129,9 @@ void hitungpembelian(string barang[6], int stok[6], int harga[6], int databarang
 			cout<<"Harga Barang Tidak Ditemukan\n";
 		}
 		
-		cout<<"\nTambah Barang (Y/N)? "; cin>>tambah;
+		cout<<"\nTambahkan Barang Berikutnya (Y/N)? "; cin>>tambah;
 		if (tambah == 'Y' || tambah == 'y') jml_beli++;
 		else if (tambah == 'N' || tambah == 'n'){
-			cout<<"\nTotal\t: ";
-			cout<<total;
 			tabelpembelian(nama_barang,hargasatuan,jumlah,subtotal,total,jml_beli);
 		}
 	}
@@ -177,7 +197,7 @@ void updateharga(string barang[6], int harga[6], int databarang){
 }
 
 void tabelpembelian(string nama_barang[50], int hargasatuan[50], int jumlah[50], int subtotal[50], int total, int jml_beli){
-	cout<<"\n\n";
+	cout<<"\n";
 	cout<<setfill('=')<<setw(60)<<"="<<endl
 		<<resetiosflags(ios::adjustfield)
 		<<"| "<<setiosflags(ios::left)<<setfill(' ')<<setw(18)<<"ITEM"<<"| "
@@ -199,7 +219,7 @@ void tabelpembelian(string nama_barang[50], int hargasatuan[50], int jumlah[50],
 }
 
 void daftarbarang(string barang[], int stok[], int databarang){
-	cout<<"\nDaftar Barang"<<endl;
+	cout<<"1. Daftar Barang"<<endl;
 	cout<<resetiosflags(ios::adjustfield);
 	cout<<setfill('-')<<setw(56)<<"-"<<endl;
 	cout<<"|"<<setiosflags(ios::left)<<setfill(' ')<<setw(3)<<"No"
@@ -216,7 +236,7 @@ void daftarbarang(string barang[], int stok[], int databarang){
 }
 
 void daftarharga(string barang[], int harga[], int databarang){
-	cout<<"\nDaftar Harga"<<endl;
+	cout<<"2. Daftar Harga"<<endl;
 	cout<<resetiosflags(ios::adjustfield);
 	cout<<setfill('-')<<setw(56)<<"-"<<endl;
 	cout<<"|"<<setiosflags(ios::left)<<setfill(' ')<<setw(3)<<"No"
