@@ -3,6 +3,8 @@
 
 using namespace std;
 
+void daftarbarang(string barang[], int stok[], int databarang);
+void daftarharga(string barang[], int harga[], int databarang);
 void hitungpembelian(string barang[6], int stok[6], int harga[6], int databarang);
 void updatebarang(string barang[6], int stok[6], int databarang);
 void updateharga(string barang[6], int harga[6], int databarang);
@@ -40,38 +42,12 @@ int main(){
 		<<"Pilih Menu\t= ";
 	cin>>menu;
 	if (menu == 1){
-		cout<<"\nDaftar Barang"<<endl;
-		cout<<resetiosflags(ios::adjustfield);
-		cout<<setfill('-')<<setw(56)<<"-"<<endl;
-		cout<<"|"<<setiosflags(ios::left)<<setfill(' ')<<setw(3)<<"No"<<
-		"| "<<setiosflags(ios::left)<<setfill(' ')<<setw(25)<<"Barang"<<"| "
-			<<setiosflags(ios::left)<<setfill(' ')<<setw(22)<<"Stok Barang"<<"|"<<endl;
-		cout<<setfill('-')<<setw(56)<<"-"<<endl;
-		for(int k = 0; k < databarang; k++){
-			cout<<resetiosflags(ios::adjustfield);
-			cout<<"|"<<k+1<<setiosflags(ios::left)<<setfill(' ')<<setw(2)<<"."
-			<<"| "<<setiosflags(ios::left)<<setfill(' ')<<setw(25)<<barang[k]<<"|"
-				<<setiosflags(ios::right)<<setw(22)<<stok[k]<<" |"<<endl;
-		}
-		cout<<setfill('-')<<setw(56)<<"-"<<endl;
+		daftarbarang(barang,stok,databarang);
 		cout<<"Update Daftar Barang (Y/N)? "; cin>>updatedaftar;
 		if (updatedaftar == 'y' || updatedaftar == 'Y') updatebarang(barang,stok,databarang);
 	}
 	else if (menu == 2){
-		cout<<"\nDaftar Harga"<<endl;
-		cout<<resetiosflags(ios::adjustfield);
-		cout<<setfill('-')<<setw(56)<<"-"<<endl;
-		cout<<"|"<<setiosflags(ios::left)<<setfill(' ')<<setw(3)<<"No"
-		<<"| "<<setiosflags(ios::left)<<setfill(' ')<<setw(25)<<"Barang"<<"| "
-			<<setiosflags(ios::left)<<setfill(' ')<<setw(22)<<"Harga Barang"<<"|"<<endl;
-		cout<<setfill('-')<<setw(56)<<"-"<<endl;
-		for(int k = 0; k < databarang; k++){
-			cout<<resetiosflags(ios::adjustfield);
-			cout<<"|"<<k+1<<setiosflags(ios::left)<<setfill(' ')<<setw(2)<<"."<<
-			"| "<<setiosflags(ios::left)<<setfill(' ')<<setw(25)<<barang[k]<<"|"
-				<<setiosflags(ios::right)<<setw(22)<<harga[k]<<" |"<<endl;
-		}
-		cout<<setfill('-')<<setw(56)<<"-"<<endl;
+		daftarharga(barang,harga,databarang);
 		cout<<"Update Daftar Harga (Y/N)? "; cin>>updatedaftar;
 		if (updatedaftar == 'y' || updatedaftar == 'Y') updateharga(barang,harga,databarang);
 	}
@@ -143,7 +119,7 @@ void hitungpembelian(string barang[6], int stok[6], int harga[6], int databarang
 
 void updatebarang(string barang[6], int stok[6], int databarang){
 	int pilih,jumlah_stok = 1,stok_baru,stok_barang;
-	string perbarui,nama_barang;
+	string perbarui,nama_barang,lihatbarang;
 	
 	for(int i = 0;i<jumlah_stok;i++){
 		cout<<"Pilih Nomor Barang\t: ";
@@ -156,16 +132,22 @@ void updatebarang(string barang[6], int stok[6], int databarang){
 				cout<<"Masukkan Jumlah Stok Baru\t= ";
 				cin>>stok_baru;
 				stok[z] = stok_baru;
+				cout<<"STOK BARANG BERHASIL DIPERBARUI.\n";
 			}
 		}
-		cout<<"Perbarui Stok Barang Lain? (y/n) ";
+		cout<<"\nPerbarui Stok Barang Lain (Y/N)? ";
 		cin>>perbarui;
-		if (perbarui == "Y" || perbarui == "y")jumlah_stok++;	
+		if (perbarui == "Y" || perbarui == "y")jumlah_stok++;
+		else if (perbarui == "N" || perbarui == "n"){
+			cout<<"Tampilkan daftar barang (Y/N)? ";
+			cin>>lihatbarang;
+			if (lihatbarang == "Y" || lihatbarang == "y") daftarbarang(barang,stok,databarang);
+		}
 	}
 }
 void updateharga(string barang[6], int harga[6], int databarang){
 	int jumlah_harga = 1,harga_baru,harga_barang,pilih;
-	string perbarui,nama_barang;
+	string perbarui,nama_barang,lihatharga;
 	
 	for(int i = 0;i<jumlah_harga;i++){
 		cout<<"Pilih Nomor Barang\t: ";
@@ -178,11 +160,17 @@ void updateharga(string barang[6], int harga[6], int databarang){
 				cout<<"Masukkan Harga Baru\t\t= ";
 				cin>>harga_baru;
 				harga[z] = harga_baru;
+				cout<<"HARGA BARANG BERHASIL DIPERBARUI.\n";
 			}
 		}
-		cout<<"Perbarui Harga Barang Lain? (y/n) ";
+		cout<<"\nPerbarui Harga Barang Lain (Y/N)? ";
 		cin>>perbarui;
 		if (perbarui == "Y" || perbarui == "y")jumlah_harga++;
+		else if (perbarui == "N" || perbarui == "n"){
+			cout<<"Tampilkan daftar barang (Y/N)? ";
+			cin>>lihatharga;
+			if (lihatharga == "Y" || lihatharga == "y") daftarharga(barang,harga,databarang);
+		}
 	}
 }
 
@@ -206,4 +194,38 @@ void tabelpembelian(string nama_barang[50], int hargasatuan[50], int jumlah[50],
 		<<"|"<<setiosflags(ios::right)<<setfill(' ')<<setw(44)<<"TOTAL"<<" |"
 		<<setfill(' ')<<setw(11)<<total<<" |"<<endl
 		<<setfill('-')<<setw(60)<<"-"<<endl;
+}
+
+void daftarbarang(string barang[], int stok[], int databarang){
+	cout<<"\nDaftar Barang"<<endl;
+	cout<<resetiosflags(ios::adjustfield);
+	cout<<setfill('-')<<setw(56)<<"-"<<endl;
+	cout<<"|"<<setiosflags(ios::left)<<setfill(' ')<<setw(3)<<"No"
+		<<"| "<<setiosflags(ios::left)<<setfill(' ')<<setw(25)<<"Barang"<<"| "
+		<<setiosflags(ios::left)<<setfill(' ')<<setw(22)<<"Stok Barang"<<"|"<<endl;
+	cout<<setfill('-')<<setw(56)<<"-"<<endl;
+	for(int k = 0; k < databarang; k++){
+		cout<<resetiosflags(ios::adjustfield);
+		cout<<"|"<<k+1<<setiosflags(ios::left)<<setfill(' ')<<setw(2)<<"."
+			<<"| "<<setiosflags(ios::left)<<setfill(' ')<<setw(25)<<barang[k]<<"|"
+			<<setiosflags(ios::right)<<setw(22)<<stok[k]<<" |"<<endl;
+	}
+	cout<<setfill('-')<<setw(56)<<"-"<<endl;
+}
+
+void daftarharga(string barang[], int harga[], int databarang){
+	cout<<"\nDaftar Harga"<<endl;
+	cout<<resetiosflags(ios::adjustfield);
+	cout<<setfill('-')<<setw(56)<<"-"<<endl;
+	cout<<"|"<<setiosflags(ios::left)<<setfill(' ')<<setw(3)<<"No"
+		<<"| "<<setiosflags(ios::left)<<setfill(' ')<<setw(25)<<"Barang"<<"| "
+		<<setiosflags(ios::left)<<setfill(' ')<<setw(22)<<"Harga Barang"<<"|"<<endl;
+	cout<<setfill('-')<<setw(56)<<"-"<<endl;
+	for(int k = 0; k < databarang; k++){
+		cout<<resetiosflags(ios::adjustfield);
+		cout<<"|"<<k+1<<setiosflags(ios::left)<<setfill(' ')<<setw(2)<<"."
+			<<"| "<<setiosflags(ios::left)<<setfill(' ')<<setw(25)<<barang[k]<<"|"
+			<<setiosflags(ios::right)<<setw(22)<<harga[k]<<" |"<<endl;
+	}
+	cout<<setfill('-')<<setw(56)<<"-"<<endl;
 }
